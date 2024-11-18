@@ -1,38 +1,118 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: azure;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  text-align: center;
+}
+.box {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 0px;
+  align-items: center;
+}
+
+.box > input {
+  padding: 4px 6px;
+  outline: none;
+  color: black;
+  border: 2px solid gray;
+  border-radius: 8px;
+}
+
+.box > .btn {
+  color: white;
+  background-color: black;
+  padding: 6px 10px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.box > .btn:hover {
+  background-color: gray;
+}
+
+.weather-card {
+  border: 1px solid gray;
+  text-align: left;
+  padding: 20px;
+  margin-right: 12px;
+  border-radius: 8px;
+  /* background-color: aqua; */
+}
+
+.forecast-card {
+  border: 1px solid rgb(7, 7, 7);
+  margin-bottom: 6px;
+  border-radius: 4px;
+  /* color: brown; */
+  /* background-color: aqua; */
+}
+
+.main-temp {
+  margin-top: 20px;
+  font-size: 2.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.w-card {
+  display: flex;
+  gap: 2px;
+  /* max-height: 20rem; */
+  justify-content: space-around;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.forcast-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
+  max-width: 60%;
+  /* border: 1px solid gray; */
 }
 
-.App-link {
-  color: #61dafb;
+.forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* border: 1px solid gray; */
+}
+.f-card-wrapper {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  /* margin: 5px; */
+  gap: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* .forecast-border{
+  border: 1px solid gray;
+  border-radius: 8px;
+} */
+
+@media only screen and (max-width: 600px) {
+  .w-card {
+    flex-direction: column;
   }
 }
+
+/* .brd{
+  border: 1px solid black;
+  margin: 4px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px black;
+  
+
+} */
