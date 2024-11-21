@@ -1,18 +1,3 @@
-// import React from 'react';
-
-// function ForecastCard({ data }) {
-//     return (
-//         <div className="forecast-card" >
-//             <b>{data.date}</b>
-//             <p>{data.temperature}°C</p>
-//             <p>{data.description}</p>
-//             <img src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`} alt="Weather icon" />
-//         </div>
-//     );
-// }
-
-// export default ForecastCard;
-
 import React from "react";
 
 function ForecastCard({ data, isCelsius }) {
@@ -27,8 +12,8 @@ function ForecastCard({ data, isCelsius }) {
           ? `${data.temperature.toFixed()}°C`
           : `${convertToFahrenheit(data.temperature).toFixed()}°F`}
       </p>
-      <p>{data.description}</p>
-      <img
+      <p className="description">{data.description}</p>
+      <img className="icon-img"
         src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
         alt="Weather icon"
       />

@@ -1,29 +1,18 @@
-// import React from 'react';
-
-// function WeatherCard({ data }) {
-//     return (
-//         <div className="weather-card">
-//             <h2>Current Weather</h2>
-//             <p>Temperature: {data.temp.toFixed(2)}°C</p>
-//             <p>Min: {data.temp_min.toFixed(2)}°C / Max: {data.temp_max.toFixed(2)}°C</p>
-//             <p>Humidity: {data.humidity}%</p>
-//             <p>Wind Speed: {data.wind_speed} m/s</p>
-//             <p>{data.description}</p>
-//             <img src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`} alt="Weather icon" />
-//         </div>
-//     );
-// }
-
-// export default WeatherCard;
-
 import React from "react";
 
 function WeatherCard({ data, isCelsius }) {
-  // Helper function to convert Celsius to Fahrenheit
   const convertToFahrenheit = (temp) => (temp * 9) / 5 + 32;
+  // convert Celsius to Fahrenheit
 
   return (
     <div className="weather-card">
+      <h2 style={{ textAlign: "center" }}>{data.city}</h2>
+      <img 
+        className="image-sixe"
+        src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
+        alt="Weather icon"
+      />
+
       <h2 className="main-temp">
         {isCelsius
           ? `${data.temp.toFixed()}°C`
@@ -33,18 +22,26 @@ function WeatherCard({ data, isCelsius }) {
       <p
         style={{
           display: "flex",
-          gap: "4px",
+          justifyContent: "space-between",
         }}
       >
-        <span style={{
-
-        }}>
+        <span
+          className="forecast-card"
+          style={{
+            padding: "2px",
+          }}
+        >
           Min:
           {isCelsius
             ? `${data.temp_min.toFixed()}°C`
             : `${convertToFahrenheit(data.temp_min).toFixed()}°F`}
         </span>
-        <span>
+        <span
+          className="forecast-card"
+          style={{
+            padding: "2px",
+          }}
+        >
           Max:{" "}
           {isCelsius
             ? `${data.temp_max.toFixed()}°C`
@@ -54,10 +51,6 @@ function WeatherCard({ data, isCelsius }) {
       <p>Humidity: {data.humidity}%</p>
       <p>Wind Speed: {data.wind_speed} m/s</p>
       <p>{data.description}</p>
-      <img
-        src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
-        alt="Weather icon"
-      />
     </div>
   );
 }

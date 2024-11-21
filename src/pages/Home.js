@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import {
-  getCurrentWeather,
-  //getfiveDaysweather,
-} from "../services/WeatherService";
+import React, { useState,useEffect } from "react";
+import { getCurrentWeather } from "../services/WeatherService";
 import WeatherCard from "../components/WeatherCard";
 import ForecastCard from "../components/ForecastCard";
 import Daily from "../components/fiveDaysweather";
 
+
+
 function Home() {
-  const [city, setCity] = useState("japan");
+  const [city, setCity] = useState("Delhi");
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [fiveDaysweather, setfiveDaysweather] = useState([]);
@@ -22,9 +21,8 @@ function Home() {
       const weatherData = data;
       const forecastData = data;
 
-      //const fiveDaysweatherData = await getfiveDaysweather(city);
-
       setCurrentWeather({
+        city: weatherData.city.name,
         temp: weatherData.list[0].main.temp,
         temp_min: weatherData.list[0].main.temp_min,
         temp_max: weatherData.list[0].main.temp_max,
@@ -54,56 +52,8 @@ function Home() {
     }
   };
 
-  // const toggleUnits = () => {
-  //   setIsCelsius(!isCelsius);
-  //   setCurrentWeather((prevWeather) => {
-  //     const factor = isCelsius ? 9 / 5 + 32 : 5 / 9 - 32; // convert celsius to fahrenheit
-  //     return {
-  //       ...prevWeather,
-  //       temp: prevWeather.temp * factor,
-  //       temp_min: prevWeather.temp_min * factor,
-  //       temp_max: prevWeather.temp_max * factor,
-  //     };
-  //   });
-  // };
-
   const toggleUnits = () => {
     setIsCelsius(!isCelsius);
-
-    // Convert current weather
-
-    // setCurrentWeather((prevWeather) => ({
-    //     ...prevWeather,
-    //     temp: isCelsius
-    //         ? (prevWeather.temp * 9) / 5 + 32
-    //         : ((prevWeather.temp - 32) * 5) / 9,
-    //     temp_min: isCelsius
-    //         ? (prevWeather.temp_min * 9) / 5 + 32
-    //         : ((prevWeather.temp_min - 32) * 5) / 9,
-    //     temp_max: isCelsius
-    //         ? (prevWeather.temp_max * 9) / 5 + 32
-    //         : ((prevWeather.temp_max - 32) * 5) / 9,
-    // }));
-
-    // Convert forecast temperatures
-    // setForecast((prevForecast) =>
-    //     prevForecast.map((item) => ({
-    //         ...item,
-    //         temperature: isCelsius
-    //             ? (item.temperature * 9) / 5 + 32
-    //             : ((item.temperature - 32) * 5) / 9,
-    //     }))
-    // );
-
-    // Convert 5-day forecast temperatures
-    setfiveDaysweather((prevFiveDays) =>
-      prevFiveDays.map((item) => ({
-        ...item,
-        temperature: isCelsius
-          ? (item.temperature * 9) / 5 + 32
-          : ((item.temperature - 32) * 5) / 9,
-      }))
-    );
   };
 
   //------------------
@@ -131,11 +81,17 @@ function Home() {
 
     // Convert the uniqueDays object to an array of results
     return Object.entries(uniqueDays).map(([date, data]) => ({
-      day: data.day, // Use shortened day name
+      day: data.day, // day name
       temperature: data.temperature,
       weatherIcon: data.weatherIcon,
     }));
   }
+
+   // Automatically trigger the search when the component mounts
+   useEffect(() => {
+   handleSearch();
+  }, []); // Empty dependency array ensures it runs only once after the component mounts
+
 
   //======
   return (
@@ -148,6 +104,7 @@ function Home() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
+       
         <button className="btn" onClick={handleSearch}>
           Search
         </button>
