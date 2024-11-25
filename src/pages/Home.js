@@ -7,7 +7,7 @@ import Daily from "../components/fiveDaysweather";
 
 
 function Home() {
-  const [city, setCity] = useState("Delhi");
+  const [city, setCity] = useState("Bengaluru");
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [fiveDaysweather, setfiveDaysweather] = useState([]);
@@ -87,7 +87,7 @@ function Home() {
     }));
   }
 
-   // Automatically trigger the search when the component mounts
+  // Automatically trigger the search when the component mounts
    useEffect(() => {
    handleSearch();
   }, []); // Empty dependency array ensures it runs only once after the component mounts
