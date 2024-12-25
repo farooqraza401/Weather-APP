@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+#project is live on https://superb-figolla-18c520.netlify.app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
